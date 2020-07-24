@@ -12,9 +12,24 @@ public class GenerateAst {
             System.exit(64);
         }
         String outputDir = args[0];
-        defineAst(outputDir, "Expr", Arrays.asList("Binary : Expr left, Token operator, Expr right",
-                "Grouping : Expr expression", "Literal : Object value", "Unary : Token operator, Expr right"));
+        defineAst(outputDir, "Expr", Arrays.asList(
+            "Assign   : Token name, Expr value",
+            "Binary   : Expr left, Token operator, Expr right",
+            "Grouping : Expr expression",
+            "Literal  : Object value",
+            "Unary    : Token operator, Expr right",
+            "Variable : Token name"
+            ));
+
+        defineAst(outputDir, "Stmt", Arrays.asList(
+            "Block      : List<stmt> statements",
+            "Expression : Expr expression",
+            "Print      : Expr expression",
+            "Var        : Token name, Expr initializer"
+            ));
+
     }
+
 
     private static void defineAst(String outputDir, String baseName, List<String> types) throws IOException {
         String path = outputDir + "/" + baseName + ".java";
@@ -38,6 +53,7 @@ public class GenerateAst {
         writer.close();
     }
 
+
     private static void defineVisitor(PrintWriter writer, String baseName, List<String> types) {
         writer.println("  interface Visitor<R> {");
 
@@ -48,6 +64,7 @@ public class GenerateAst {
 
         writer.println("  }");
     }
+
 
     private static void defineType(PrintWriter writer, String baseName, String className, String fieldList) {
         writer.println("  static class " + className + " extends " + baseName + " {");
