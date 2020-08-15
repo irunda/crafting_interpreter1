@@ -1,0 +1,9 @@
+{
+    "workbench.colorCustomizations": {
+        "scrollbarSlider.hoverBackground": "#1e90ff",
+        "tab.activeBackground": "#1e90ff",
+        "tab.activeForeground": "#000000",
+        "activityBar.background": "#1e90ff",
+        "activityBar.foreground": "#000000",
+    }
+}
